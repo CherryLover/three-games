@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -35,10 +35,10 @@ body { margin: 0; overscroll-behavior: none; -webkit-user-select: none; user-sel
 </head>
 <body>
 <div id="tw-root">
-  <canvas id="tw-canvas" tabindex="0" aria-label="Tidewright game view"></canvas>
+  <canvas id="tw-canvas" tabindex="0" aria-label="潮汐工匠游戏画面"></canvas>
   <div id="tw-ui"></div>
-  <div id="tw-loading"><div><b>潮汐工匠</b><span>修剪灯芯……</span></div></div>
-  <div id="tw-nogl" hidden>Tidewright needs WebGL 2 to paint its sea. Open it in a current version of Chrome, Edge, Firefox or Safari.</div>
+  <div id="tw-loading"><div><b>潮汐工匠</b><span>正在修剪灯芯…</span></div></div>
+  <div id="tw-nogl" hidden>潮汐工匠需要 WebGL 2 才能绘出这片海。请使用最新版的 Chrome、Edge、Firefox 或 Safari 浏览器打开。</div>
 </div>
 <script>
 // ===== 00-core.js =====
@@ -2011,36 +2011,36 @@ void main(){
   // Layout (hand-authored). North = -Z, east = +X. Index 0..4 outer beacons, 5 = the Heartlight.
   // ---------------------------------------------------------------------------
   const ISLES = [
-    { name: "Gull's Rest", maxH: 40, crag: 9, x: -600, z: 470, ax: 128, az: 98, rot: 0.35, H: 22, pow: 1.1, plateau: 0.75, cliff: 18, ridge: 0.3, rf: 80, warp: 0.2, rough: 0.2, terr: 0.25, step: 6, dip: [0.02, 0.01], tilt: 0.4,
+    { name: '鸥憩岛', maxH: 40, crag: 9, x: -600, z: 470, ax: 128, az: 98, rot: 0.35, H: 22, pow: 1.1, plateau: 0.75, cliff: 18, ridge: 0.3, rf: 80, warp: 0.2, rough: 0.2, terr: 0.25, step: 6, dip: [0.02, 0.01], tilt: 0.4,
       peaks: [{ x: -42, z: -22, h: 16, r: 48 }, { x: 52, z: -30, h: 13, r: 26 }], feats: [{ x: 50, z: 96, a: -0.3, r: 30 }, { x: 98, z: 48, a: 0.25, r: 32 }],
       dockDir: [0.5, 0.866], lhAng: -0.62, lhBack: 20, padMin: 11, padMax: 16, seed: 3,
       tw: { H: 18, rB: 3.2, rT: 2.15, gh: 2.4, segs: 18, bands: 8, pattern: [0, 0, 1, 0, 0, 1, 0, 0], win: 3 } },
-    { name: 'Corrie Skerry', maxH: 60, crag: 14, hpow: 1.1, x: -640, z: -420, ax: 132, az: 128, rot: 0, H: 13, pow: 1, plateau: 0.7, cliff: 24, ridge: 0.5, rf: 60, warp: 0.18, rough: 0.22, terr: 0.45, step: 8, dip: [-0.03, 0.02],
+    { name: '冰斗礁', maxH: 60, crag: 14, hpow: 1.1, x: -640, z: -420, ax: 132, az: 128, rot: 0, H: 13, pow: 1, plateau: 0.7, cliff: 24, ridge: 0.5, rf: 60, warp: 0.18, rough: 0.22, terr: 0.45, step: 8, dip: [-0.03, 0.02],
       peaks: [{ x: -62, z: -28, h: 46, r: 44 }, { x: -8, z: -78, h: 38, r: 40 }, { x: -78, z: 38, h: 31, r: 36 }, { x: 62, z: -55, h: 23, r: 32 }],
       feats: [{ x: 52, z: 80, a: -0.95, r: 70 }, { x: 104, z: 14, a: 0.25, r: 30 }],
       dockDir: [0.5, 0.866], lhAng: -0.85, lhBack: 18, padMin: 13, padMax: 18, seed: 5,
       tw: { H: 20, rB: 3.3, rT: 2.2, gh: 2.5, segs: 18, bands: 8, pattern: [1, 0], win: 3 } },
-    { name: 'Mourn Holm', maxH: 76, crag: 14, x: 150, z: -820, ax: 118, az: 104, rot: -0.3, H: 44, pow: 0.8, plateau: 0.6, cliff: 40, ridge: 0.35, rf: 75, warp: 0.2, rough: 0.18, terr: 0.6, step: 12, dip: [0.06, 0.10], tilt: 0.75,
+    { name: '哀悼屿', maxH: 76, crag: 14, x: 150, z: -820, ax: 118, az: 104, rot: -0.3, H: 44, pow: 0.8, plateau: 0.6, cliff: 40, ridge: 0.35, rf: 75, warp: 0.2, rough: 0.18, terr: 0.6, step: 12, dip: [0.06, 0.10], tilt: 0.75,
       peaks: [{ x: -45, z: -50, h: 26, r: 50 }], feats: [{ x: 30, z: 92, a: -0.3, r: 28 }, { x: 75, z: 62, a: 0.2, r: 30 }],
       dockDir: [0.3, 0.954], lhAng: -0.6, lhBack: 20, padMin: 14, padMax: 20, seed: 7,
       tw: { H: 22, rB: 3.5, rT: 2.25, gh: 2.6, segs: 18, bands: 9, pattern: [0, 0, 0, 1, 1, 1], win: 4 } },
-    { name: 'Saltlathe', maxH: 54, crag: 6, x: 800, z: -180, ax: 104, az: 140, rot: 0.2, H: 50, pow: 0.55, plateau: 0.45, cliff: 26, ridge: 0.12, rf: 90, warp: 0.16, rough: 0.16, terr: 0.9, step: 10.5, dip: [0.015, -0.02],
+    { name: '盐镟岛', maxH: 54, crag: 6, x: 800, z: -180, ax: 104, az: 140, rot: 0.2, H: 50, pow: 0.55, plateau: 0.45, cliff: 26, ridge: 0.12, rf: 90, warp: 0.16, rough: 0.16, terr: 0.9, step: 10.5, dip: [0.015, -0.02],
       peaks: [], feats: [{ x: -55, z: 105, a: -0.28, r: 28 }, { x: -92, z: 60, a: 0.22, r: 30 }],
       dockDir: [-0.45, 0.893], lhAng: 0.65, lhBack: 20, padMin: 14, padMax: 22, seed: 9,
       tw: { H: 17, rB: 3.6, rT: 2.5, gh: 2.5, segs: 8, bands: 6, pattern: [0, 0, 0, 0, 0, 1], win: 3 } },
-    { name: 'Thrum Rock', maxH: 66, crag: 20, hpow: 1.3, x: 520, z: 640, ax: 100, az: 92, rot: 0.6, H: 38, pow: 1.2, plateau: 0.8, cliff: 24, ridge: 1.0, rf: 42, warp: 0.25, rough: 0.32, terr: 0.35, step: 9, dip: [0, 0],
+    { name: '嗡鸣岩', maxH: 66, crag: 20, hpow: 1.3, x: 520, z: 640, ax: 100, az: 92, rot: 0.6, H: 38, pow: 1.2, plateau: 0.8, cliff: 24, ridge: 1.0, rf: 42, warp: 0.25, rough: 0.32, terr: 0.35, step: 9, dip: [0, 0],
       peaks: [{ x: 10, z: -20, h: 40, r: 30 }, { x: -35, z: 25, h: 27, r: 24 }, { x: 42, z: 30, h: 23, r: 22 }], feats: [{ x: -60, z: 62, a: -0.3, r: 26 }, { x: -88, z: 22, a: 0.25, r: 28 }],
       dockDir: [-0.6, 0.8], lhAng: 0.7, lhBack: 18, padMin: 13, padMax: 18, seed: 13, lean: 1,
       tw: { H: 21, rB: 3.1, rT: 2.1, gh: 2.5, segs: 18, bands: 10, pattern: [1, 1, 0, 0, 0], win: 4 } },
-    { name: 'Lanternhead', maxH: 103, crag: 22, hpow: 1.15, bname: 'The Heartlight', x: 40, z: -30, ax: 152, az: 136, rot: -0.4, H: 34, pow: 0.9, plateau: 0.75, cliff: 34, ridge: 0.6, rf: 85, warp: 0.2, rough: 0.2, terr: 0.7, step: 13, dip: [0.05, -0.04],
+    { name: '灯首岛', maxH: 103, crag: 22, hpow: 1.15, bname: '心灯', x: 40, z: -30, ax: 152, az: 136, rot: -0.4, H: 34, pow: 0.9, plateau: 0.75, cliff: 34, ridge: 0.6, rf: 85, warp: 0.2, rough: 0.2, terr: 0.7, step: 13, dip: [0.05, -0.04],
       peaks: [{ x: -34, z: 58, h: 92, r: 40 }, { x: -8, z: 22, h: 46, r: 72 }, { x: 40, z: -34, h: 40, r: 44 }, { x: -78, z: -22, h: 38, r: 32 }], feats: [{ x: -80, z: 128, a: -0.22, r: 30 }],
       dockDir: [-0.5, 0.866], heart: true, seed: 17,
       tw: { H: 38, rB: 6.4, rT: 3.9, gh: 4.4, segs: 28, bands: 12, pattern: [0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0], win: 7, heart: true } },
     // uninhabited skerries
-    { name: 'The Teeth', x: -775, z: 35, ax: 50, az: 30, rot: 1.1, H: 6, pow: 1, plateau: 0.8, cliff: 8, ridge: 0.9, rf: 26, warp: 0.3, rough: 0.55, terr: 0, step: 5, seed: 21, skerry: true },
-    { name: "Widow's Comb", x: 420, z: -470, ax: 54, az: 28, rot: -0.5, H: 8, pow: 1, plateau: 0.8, cliff: 9, ridge: 0.9, rf: 24, warp: 0.3, rough: 0.5, terr: 0, step: 5, seed: 23, skerry: true },
-    { name: 'Hag Stones', x: 120, z: 575, ax: 40, az: 30, rot: 0.2, H: 6, pow: 1, plateau: 0.8, cliff: 7, ridge: 0.9, rf: 22, warp: 0.3, rough: 0.55, terr: 0, step: 5, seed: 27, skerry: true },
-    { name: 'Gannet Stacks', x: -285, z: -150, ax: 36, az: 30, rot: 0.9, H: 13, pow: 0.9, plateau: 0.7, cliff: 13, ridge: 0.8, rf: 24, warp: 0.25, rough: 0.45, terr: 0.2, step: 6, seed: 29, skerry: true },
+    { name: '齿礁', x: -775, z: 35, ax: 50, az: 30, rot: 1.1, H: 6, pow: 1, plateau: 0.8, cliff: 8, ridge: 0.9, rf: 26, warp: 0.3, rough: 0.55, terr: 0, step: 5, seed: 21, skerry: true },
+    { name: '寡妇梳礁', x: 420, z: -470, ax: 54, az: 28, rot: -0.5, H: 8, pow: 1, plateau: 0.8, cliff: 9, ridge: 0.9, rf: 24, warp: 0.3, rough: 0.5, terr: 0, step: 5, seed: 23, skerry: true },
+    { name: '巫婆石', x: 120, z: 575, ax: 40, az: 30, rot: 0.2, H: 6, pow: 1, plateau: 0.8, cliff: 7, ridge: 0.9, rf: 22, warp: 0.3, rough: 0.55, terr: 0, step: 5, seed: 27, skerry: true },
+    { name: '塘鹅石柱', x: -285, z: -150, ax: 36, az: 30, rot: 0.9, H: 13, pow: 0.9, plateau: 0.7, cliff: 13, ridge: 0.8, rf: 24, warp: 0.25, rough: 0.45, terr: 0.2, step: 6, seed: 29, skerry: true },
   ];
   // hand-placed hazards: [x, z, r, h, lean]
   const ROCKS_HAND = [
@@ -7756,7 +7756,7 @@ void main(){
       const p = sat((dc - T.BOUNDS) / 160);
       cx -= (b.x / dc) * 9 * p; cz -= (b.z / dc) * 9 * p;
       autoYaw -= clamp(wrap(Math.atan2(-b.x, -b.z) - b.heading), -1, 1) * 0.75 * p;   // swing the bow home
-      if (live && G.boundsCd <= 0) { G.boundsCd = 25; hint('风暴把你吹回群岛。', true); }
+      if (live && G.boundsCd <= 0) { G.boundsCd = 25; hint('狂风把你推回了群岛。', true); }
     }
     if (assist.on && live) {
       const dx = assist.x - b.x, dz = assist.z - b.z, d = hyp(dx, dz);
@@ -7880,7 +7880,7 @@ void main(){
       bs.immune = 1.0; stats.knocks++;
       if (S.phase === 'free') b.hull = Math.max(b.hull, 0.15);       // no wrecks after the dawn
       if (b.hull <= 0) { b.hull = 0; beginRespawn('wreck'); }
-      else if (!G.tipHull && b.hull < 0.75) { G.tipHull = true; hint('船体受损了。停泊在亮灯的灯塔旁时，它会自行修复。'); }
+      else if (!G.tipHull && b.hull < 0.75) { G.tipHull = true; hint('船体裂了。停靠在已点亮的灯塔旁，它会慢慢修复。'); }
     }
   }
 
@@ -8068,9 +8068,9 @@ void main(){
     if (G.heartOpen && !G.heartOpenSent && G.heartIdx >= 0 && !sb[G.heartIdx].kindled) {
       G.heartOpenSent = true;
       TW.emit('heartOpen');
-      let isle = 'the Heartlight';
+      let isle = '心灯';
       if (W.islands) { const hb = wb[G.heartIdx]; let bd = 1e12; for (let i = 0; i < W.islands.length; i++) { const is = W.islands[i], d = hyp(is.x - hb.x, is.z - hb.z); if (d < bd) { bd = d; isle = is.name; } } }
-      hint((NUM[G.outerTotal] || G.outerTotal) + ' lights burn. The gale gathers over ' + isle + '.', true);
+      hint((NUM[G.outerTotal] || G.outerTotal) + '座灯塔已经燃起。狂风正在' + isle + '上空聚集。', true);
     }
     G.heartCd -= dt; G.boundsCd -= dt;
 
@@ -8087,7 +8087,7 @@ void main(){
       }
       if (ki >= 0) {
         if (wb[ki].isHeart && !G.heartOpen) {
-          if (G.heartCd <= 0) { G.heartCd = 16; hint('The Heartlight will not take the flame until the outer lights burn.', true); }
+          if (G.heartCd <= 0) { G.heartCd = 16; hint('外围的灯塔全部燃起之前，心灯不会接纳火焰。', true); }
         } else {
           const p = sb[ki];
           assist.on = true; assist.x = wb[ki].dock.x; assist.z = wb[ki].dock.z;
@@ -8113,7 +8113,7 @@ void main(){
             f.taken = true;
             L.oil = Math.min(1, L.oil + T.FLOAT_OIL); G.flare = Math.max(G.flare, 0.7); stats.floats++;
             TW.emit('pickup', { x: f.x, z: f.z, oil: L.oil });
-            if (!G.tipFloat) { G.tipFloat = true; hint('Storm-glass. The lantern drinks its light.'); }
+            if (!G.tipFloat) { G.tipFloat = true; hint('是风暴琉璃。提灯吸饱了它的光。'); }
           }
         }
       }
@@ -8158,7 +8158,7 @@ void main(){
         endExposure();
         resp.mode = 2; resp.t = 0; f = 1;
         TW.emit('respawn');
-        hint(respawnPt.index >= 0 ? 'The flame wakes again at ' + W.beacons[respawnPt.index].name + '.' : 'The flame wakes again where the voyage began.', true);
+        hint(respawnPt.index >= 0 ? '火焰在' + W.beacons[respawnPt.index].name + '重新燃起。' : '火焰在航程起点重新燃起。', true);
       }
     } else if (resp.mode === 2) {
       resp.t += dt;
@@ -8198,9 +8198,9 @@ void main(){
     const ph = S.phase, t = S.time;
     if (ph === 'sailing' && resp.mode === 0) {
       L.oil -= (dt / T.OIL_TIME) * (1 + T.OIL_RAIN * S.rain);
-      if (G.lowArmed && L.oil < 0.2) { G.lowArmed = false; TW.emit('lanternLow'); hint('The lantern gutters. Find storm-glass, or a beacon to kindle.', true); }
+      if (G.lowArmed && L.oil < 0.2) { G.lowArmed = false; TW.emit('lanternLow'); hint('提灯的火苗摇摇欲灭。快去找风暴琉璃，或者点亮一座灯塔。', true); }
       else if (!G.lowArmed && L.oil > 0.3) G.lowArmed = true;
-      if (!G.tipOil && L.oil < 0.6) { G.tipOil = true; hint('Lantern oil burns away, faster in the rain. Glowing storm-glass floats refill it.'); }
+      if (!G.tipOil && L.oil < 0.6) { G.tipOil = true; hint('灯油会慢慢烧尽，下雨时烧得更快。发光的风暴琉璃浮球可以补充灯油。'); }
       if (L.oil <= 0) { L.oil = 0; beginRespawn('lanternOut'); }
     }
     G.flare = Math.max(0, G.flare - dt * 0.7);
@@ -8220,17 +8220,17 @@ void main(){
       G.tutT += dt;
       if (G.tutStep === 0 && G.tutT > 1.4) {
         G.tutStep = 1;
-        hint(TW.isTouch ? 'Left thumb: lean the tiller to steer, push up to set more sail.' : 'A / D to steer  ·  W / S to set or strike sail');
+        hint(TW.isTouch ? '左手拇指：左右推舵转向，往上推可以多升帆。' : 'A / D 转舵  ·  W / S 升帆或降帆');
       } else if (G.tutStep === 1 && G.tutT > 7.5) {
         G.tutStep = 2;
         const ti = nearestUnlit(false);
-        if (ti >= 0) hint('Follow the faint ring of buoys to ' + W.beacons[ti].name + ' and kindle its light.');
+        if (ti >= 0) hint('循着若隐若现的浮标圈驶向' + W.beacons[ti].name + '，点亮那里的灯塔。');
       }
       // in irons for the first time
       const irons = b.sail > 0.15 && bs.theta < 38;
       G.ironsT = irons ? G.ironsT + dt : 0;
-      if (!G.tipIrons && G.ironsT > 2.2 && G.tutStep >= 1) { G.tipIrons = true; hint('No sail draws straight into the wind. Bear away to fill it; the oars will scull you through.'); }
-      if (!G.tipMaw && bs.maw > 0.25) { G.tipMaw = true; hint('The Maw! Keep sail on and steer across the current.', true); }
+      if (!G.tipIrons && G.ironsT > 2.2 && G.tutStep >= 1) { G.tipIrons = true; hint('帆没法顶着风鼓起来。偏离风向让帆吃满风；船桨会帮你划过去。'); }
+      if (!G.tipMaw && bs.maw > 0.25) { G.tipMaw = true; hint('是巨口漩涡！保持张帆，横着穿过洋流。', true); }
     }
     G.hintCd -= dt;
     if (hintQ.length && G.hintCd <= 0 && ph !== 'title') { G.hintCd = 5.2; TW.emit('hint', { text: hintQ.shift() }); }
@@ -8470,7 +8470,7 @@ void main(){
   // ===========================================================================
   // HUD
   // ===========================================================================
-  const NUM = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'];
+  const NUM = ['零', '一', '两', '三', '四', '五', '六', '七', '八'];
   function updateHud(dt) {
     const b = B, ph = S.phase, wb = W.beacons, sb = S.beacons;
     hud.oil = L.oil; hud.hull = b.hull; hud.speed = b.speed; hud.sail = b.sail; hud.heading = b.heading;
@@ -8502,14 +8502,14 @@ void main(){
     if (key !== G.objKey) {
       G.objKey = key;
       let o = '';
-      if (ph === 'title') o = 'The lights of the Thrumming Isles are dark.';
-      else if (ph === 'ending') o = 'The Long Gale is broken.';
-      else if (ph === 'free') o = 'The isles are lit. Sail on.';
+      if (ph === 'title') o = '嗡鸣群岛的灯火全都熄灭了。';
+      else if (ph === 'ending') o = '长风暴已经平息。';
+      else if (ph === 'free') o = '群岛灯火通明。继续航行吧。';
       else if (ti >= 0) {
         const heart = wb[ti].isHeart;
-        if (kindling) o = heart ? '稳住。心灯醒来了。' : 'Hold fast. The flame is climbing ' + wb[ti].name + '.';
-        else if (heart) o = (NUM[G.outerTotal] || G.outerTotal) + ' lights burn. Bring the flame to the Heartlight.';
-        else o = 'Kindle the beacon at ' + wb[ti].name + '.';
+        if (kindling) o = heart ? '稳住。心灯正在苏醒。' : '稳住。火焰正沿着' + wb[ti].name + '的灯塔攀升。';
+        else if (heart) o = (NUM[G.outerTotal] || G.outerTotal) + '座灯塔已经燃起。把火焰带到心灯去。';
+        else o = '点亮' + wb[ti].name + '的灯塔。';
       } else o = hud.objective;
       hud.objective = o;
     }
@@ -8724,7 +8724,7 @@ void main(){
 (function () {
   'use strict';
   const TW = window.TW;
-  const FONT = '"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", P052, Georgia, serif';
+  const FONT = '"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", P052, Georgia, "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif';
   const DEG = 180 / Math.PI, TAU = Math.PI * 2;
   const mod = (a, n) => ((a % n) + n) % n;
   const isNum = (v) => typeof v === 'number' && v === v && v !== Infinity && v !== -Infinity;
@@ -9098,20 +9098,20 @@ void main(){
     return b;
   }
   function syncToggles() {
-    for (let i = 0; i < toggles.length; i++) { const t = toggles[i], on = !!t.get(); t.b.setAttribute('aria-pressed', on ? 'true' : 'false'); t.val.textContent = on ? 'On' : 'Off'; }
-    if (E.muteBtn) { E.muteBtn.classList.toggle('twui-muted', muted); E.muteBtn.setAttribute('aria-label', muted ? 'Sound off — turn on' : 'Sound on — mute'); }
+    for (let i = 0; i < toggles.length; i++) { const t = toggles[i], on = !!t.get(); t.b.setAttribute('aria-pressed', on ? 'true' : 'false'); t.val.textContent = on ? '开' : '关'; }
+    if (E.muteBtn) { E.muteBtn.classList.toggle('twui-muted', muted); E.muteBtn.setAttribute('aria-label', muted ? '声音已关闭 — 点击开启' : '声音已开启 — 点击静音'); }
   }
   function toggleRow() {
     const r = el('div', 'twui-toggles');
-    r.appendChild(makeToggle('Sound', () => !muted, (on) => setMuted(!on)));
+    r.appendChild(makeToggle('声音', () => !muted, (on) => setMuted(!on)));
     const p = postParams();
-    if (demo || (p && 'painterly' in p)) r.appendChild(makeToggle('Painterly', () => painterlyOn, setPainterly));
+    if (demo || (p && 'painterly' in p)) r.appendChild(makeToggle('油画风格', () => painterlyOn, setPainterly));
     return r;
   }
   function legendHTML(touch) {
     const k = (s) => '<kbd class="twui-key">' + s + '</kbd>';
-    if (touch) return '<span class="twui-lg"><b>Left thumb</b> — the tiller: slide to steer, up for more sail</span><span class="twui-lg"><b>Right thumb</b> — hold Kindle in a ring of buoys</span><span class="twui-lg"><b>Drag the sea</b> to look about</span>';
-    return '<span class="twui-lg">' + k('A') + k('D') + ' steer</span><span class="twui-lg">' + k('W') + k('S') + ' sail</span><span class="twui-lg">' + k('Space') + ' kindle</span><span class="twui-lg">' + k('C') + ' chart</span><span class="twui-lg">' + k('M') + ' mute</span><span class="twui-lg">' + k('Esc') + ' pause</span>';
+    if (touch) return '<span class="twui-lg"><b>左手拇指</b> — 掌舵：左右滑动转向，往上推多升帆</span><span class="twui-lg"><b>右手拇指</b> — 在浮标圈内按住「点火」</span><span class="twui-lg"><b>拖动海面</b> 环顾四周</span>';
+    return '<span class="twui-lg">' + k('A') + k('D') + ' 转舵</span><span class="twui-lg">' + k('W') + k('S') + ' 升降帆</span><span class="twui-lg">' + k('空格') + ' 点火</span><span class="twui-lg">' + k('C') + ' 海图</span><span class="twui-lg">' + k('M') + ' 静音</span><span class="twui-lg">' + k('Esc') + ' 暂停</span>';
   }
   function setTouchMode(on) {
     on = !!on;
@@ -9172,22 +9172,22 @@ void main(){
     const inn = el('div', 'twui-title-in');
     const wm = el('h1', 'twui-wm');
     wm.setAttribute('aria-label', '潮汐工匠');
-    wm.innerHTML = '<span aria-hidden="true">T<span class="twui-wm-i">I<i class="twui-wm-glow"></i>' +
-      '<svg class="twui-wm-flame" viewBox="0 0 24 24" aria-hidden="true"><path d="' + FLAME_D + '" fill="var(--tw-ember)"/><path d="M12 9.4c.5 2 2.2 3 2.2 5.2a2.2 2.2 0 0 1-4.4 0c0-1.6 1.5-2.6 2.2-5.2z" fill="var(--tw-foam)" opacity=".85"/></svg>' +
-      '</span>DEWRIGHT</span>';
+    wm.innerHTML = '<span aria-hidden="true">潮汐<span class="twui-wm-i">工<i class="twui-wm-glow" style="bottom:1.25em"></i>' +
+      '<svg class="twui-wm-flame" style="bottom:.93em" viewBox="0 0 24 24" aria-hidden="true"><path d="' + FLAME_D + '" fill="var(--tw-ember)"/><path d="M12 9.4c.5 2 2.2 3 2.2 5.2a2.2 2.2 0 0 1-4.4 0c0-1.6 1.5-2.6 2.2-5.2z" fill="var(--tw-foam)" opacity=".85"/></svg>' +
+      '</span>匠</span>';
     const wrap = el('div', 'twui-wmwrap');
     wrap.appendChild(wm);
     wrap.appendChild(el('div', 'twui-swash', '<svg viewBox="0 0 600 24" preserveAspectRatio="none" width="100%" height="100%" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path pathLength="1" d="M3 13C34 4 62 21 104 12s78-9 124 0 96 11 150 1 104-9 158-2c22 3 44 3 50-4 4-6-5-9-9-4-4 6 6 13 17 8"/></svg>'));
     inn.appendChild(wrap);
-    inn.appendChild(el('p', 'twui-premise', '<span>长风暴熄灭了轰鸣群岛上的每一盏灯。</span><span>你带着最后的火焰。</span>'));
+    inn.appendChild(el('p', 'twui-premise', '<span>长风暴吹熄了嗡鸣群岛上所有的灯火。</span><span>你带着最后一簇火苗。</span>'));
     const row = el('div', 'twui-title-row');
-    E.startBtn = button('twui-btn twui-btn--pri', IC.sail + 'Set sail', null, doStart);
+    E.startBtn = button('twui-btn twui-btn--pri', IC.sail + '扬帆出海', null, doStart);
     row.appendChild(E.startBtn);
     row.appendChild(toggleRow());
     inn.appendChild(row);
     E.legendTitle = el('div', 'twui-legend');
     inn.appendChild(E.legendTitle);
-    inn.appendChild(el('div', 'twui-rotate', IC.turn + '<span>rotate for a wider sea</span>'));
+    inn.appendChild(el('div', 'twui-rotate', IC.turn + '<span>横屏可以看到更开阔的海面</span>'));
     t.appendChild(inn);
     E.title = t;
     return t;
@@ -9208,7 +9208,7 @@ void main(){
     for (let d = 0; d < 720; d += 15) {
       const pc = (d / 7.2).toFixed(3), major = d % 45 === 0;
       h += '<i class="twui-tk' + (major ? ' twui-tk--m' : '') + '" style="left:' + pc + '%"></i>';
-      if (major) { const n = names[(d % 360) / 45]; h += '<span class="twui-tl' + (n.length === 1 ? ' twui-tl--c' : '') + (n === 'N' ? ' twui-tl--n' : '') + '" style="left:' + pc + '%">' + n + '</span>'; }
+      if (major) { const n = names[(d % 360) / 45]; h += '<span class="twui-tl' + (n.length === 1 ? ' twui-tl--c' : '') + (n === 'N' ? ' twui-tl--n' : '') + '" style="left:' + pc + '%">' + ({ N: '北', NE: '东北', E: '东', SE: '东南', S: '南', SW: '西南', W: '西', NW: '西北' })[n] + '</span>'; }
     }
     strip.innerHTML = h;
     tape.appendChild(strip); comp.appendChild(tape);
@@ -9221,7 +9221,7 @@ void main(){
     E.tgt = el('div', 'twui-tgt', '<span class="twui-tgt-n"></span><i>·</i><span class="twui-tgt-d"></span>');
     E.tgtN = E.tgt.firstChild; E.tgtD = E.tgt.lastChild;
     comp.appendChild(E.tgt);
-    E.irons = el('div', 'twui-ironstip', '太靠近风向了，转舵离开');
+    E.irons = el('div', 'twui-ironstip', '太贴近风向了 — 偏开一点');
     comp.appendChild(E.irons);
     E.strip = strip; E.compass = comp;
     const top = el('div', 'twui-top');
@@ -9237,23 +9237,23 @@ void main(){
     const corner = el('div', 'twui-corner');
     E.chartBtn = button('twui-ib', IC.chart, '海图', () => toggleChart());
     E.chartBtn.setAttribute('aria-pressed', 'false');
-    E.muteBtn = button('twui-ib', IC.bell, 'Sound', () => setMuted(!muted));
-    E.pauseBtn = button('twui-ib', IC.pause, 'Pause', doPause);
+    E.muteBtn = button('twui-ib', IC.bell, '声音', () => setMuted(!muted));
+    E.pauseBtn = button('twui-ib', IC.pause, '暂停', doPause);
     corner.appendChild(E.chartBtn); corner.appendChild(E.muteBtn); corner.appendChild(E.pauseBtn);
     top.appendChild(corner);
     // gauges -----------------------------------------------------------------
     const g = el('div', 'twui-gauges');
     E.gOil = el('div', 'twui-g', '<div class="twui-g-fig"><svg class="twui-lantern" viewBox="0 0 20 30" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
       '<rect class="twui-oil" x="4.6" y="10.6" width="10.8" height="15.9"/><path class="twui-lflame" d="M10 12.4c.7 2.4 2.7 3.5 2.7 6.1a2.7 2.7 0 0 1-5.4 0c0-1.5.8-2.3 1.4-3.1.2.9.6 1.4 1 1.6-.2-1.5-.1-3.2.3-4.6z"/>' +
-      '<path d="M6.6 5.6a3.4 3.4 0 0 1 6.8 0"/><path d="M5.4 7.4h9.2l1.2 2.8H4.2z"/><path d="M4.2 10.2v16.4h11.6V10.2"/><path d="M2.8 28.6h14.4l-1.4-2H4.2z"/></svg></div><span class="twui-g-lab">Oil</span>');
+      '<path d="M6.6 5.6a3.4 3.4 0 0 1 6.8 0"/><path d="M5.4 7.4h9.2l1.2 2.8H4.2z"/><path d="M4.2 10.2v16.4h11.6V10.2"/><path d="M2.8 28.6h14.4l-1.4-2H4.2z"/></svg></div><span class="twui-g-lab">灯油</span>');
     E.oilRect = E.gOil.querySelector('.twui-oil'); E.oilFlame = E.gOil.querySelector('.twui-lflame');
     E.gHull = el('div', 'twui-g', '<div class="twui-g-fig"><svg class="twui-hull" viewBox="0 0 44 20" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="M2 5.4c5 1.2 12 1.8 20 1.8s15-.6 20-1.8c-1.2 6.2-4.6 10.6-9.4 12.2H11.4C6.6 16 3.2 11.600 2 5.400z"/><path d="M6.4 10.800c5 .8 10 1.200 15.600 1.200s10.600-.4 15.600-1.200" opacity=".55"/><path d="M22 7.200v10.400" opacity=".55"/></svg><div class="twui-bar"><i></i></div></div><span class="twui-g-lab">Hull</span>');
+      '<path d="M2 5.4c5 1.2 12 1.8 20 1.8s15-.6 20-1.8c-1.2 6.2-4.6 10.6-9.4 12.2H11.4C6.6 16 3.2 11.600 2 5.400z"/><path d="M6.4 10.800c5 .8 10 1.200 15.600 1.200s10.600-.4 15.600-1.200" opacity=".55"/><path d="M22 7.200v10.400" opacity=".55"/></svg><div class="twui-bar"><i></i></div></div><span class="twui-g-lab">船体</span>');
     E.hullBar = E.gHull.querySelector('.twui-bar i');
-    E.gSpd = el('div', 'twui-g', '<div class="twui-g-fig"><span class="twui-spd">0.0</span></div><span class="twui-g-lab">Knots</span>');
+    E.gSpd = el('div', 'twui-g', '<div class="twui-g-fig"><span class="twui-spd">0.0</span></div><span class="twui-g-lab">航速(节)</span>');
     E.spd = E.gSpd.querySelector('.twui-spd');
     const sailShape = '<path d="M10 2v20.500"/><path d="M10 3.400c5.600 3.600 8.800 9.400 9.400 16.600H10z"/><path d="M8.200 7.400C5.200 11 3.400 15.200 3 20h5.200z"/>';
-    E.gSail = el('div', 'twui-g', '<div class="twui-g-fig"><div class="twui-sailg">' + svg(sailShape, 'twui-sailfill', '0 0 22 26') + svg(sailShape + '<path d="M1.600 24h19"/>', 'twui-sailline', '0 0 22 26') + '</div></div><span class="twui-g-lab">Sail</span>');
+    E.gSail = el('div', 'twui-g', '<div class="twui-g-fig"><div class="twui-sailg">' + svg(sailShape, 'twui-sailfill', '0 0 22 26') + svg(sailShape + '<path d="M1.600 24h19"/>', 'twui-sailline', '0 0 22 26') + '</div></div><span class="twui-g-lab">帆</span>');
     E.sailFill = E.gSail.querySelector('.twui-sailfill');
     g.appendChild(E.gOil); g.appendChild(E.gHull); g.appendChild(E.gSpd); g.appendChild(E.gSail);
     E.gauges = g;
@@ -9281,8 +9281,8 @@ void main(){
     zone.appendChild(E.stick);
     E.zone = zone;
     frag.appendChild(zone);
-    E.kbtn = el('button', 'twui-kbtn', ringSVG() + '<span class="twui-kbtn-in">' + IC.flame + 'Kindle</span>');
-    E.kbtn.type = 'button'; E.kbtn.setAttribute('aria-label', '按住点燃');
+    E.kbtn = el('button', 'twui-kbtn', ringSVG() + '<span class="twui-kbtn-in">' + IC.flame + '点火</span>');
+    E.kbtn.type = 'button'; E.kbtn.setAttribute('aria-label', '按住点火');
     E.kbtnFg = E.kbtn.querySelector('.twui-ring-fg');
     frag.appendChild(E.kbtn);
 
@@ -9360,19 +9360,19 @@ void main(){
 
   function buildPause() {
     const p = el('div', 'twui-pause');
-    p.setAttribute('role', 'dialog'); p.setAttribute('aria-label', 'Paused');
-    const main = el('div', 'twui-col twui-pause-main', IC.anchor + '<h2 class="twui-h">Hove to</h2><p class="twui-sub">The skiff rides to her sea-anchor. The flame keeps.</p>');
+    p.setAttribute('role', 'dialog'); p.setAttribute('aria-label', '已暂停');
+    const main = el('div', 'twui-col twui-pause-main', IC.anchor + '<h2 class="twui-h">停船顶风</h2><p class="twui-sub">小船系着海锚随浪起伏，火苗安然无恙。</p>');
     const stack = el('div', 'twui-stack');
-    E.resumeBtn = button('twui-btn twui-btn--pri', 'Resume', null, doResume);
+    E.resumeBtn = button('twui-btn twui-btn--pri', '继续航行', null, doResume);
     stack.appendChild(E.resumeBtn);
     stack.appendChild(button('twui-btn', '重新开始航程', null, () => { p.classList.add('twui-confirming'); try { E.keepBtn.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }));
     main.appendChild(stack);
     main.appendChild(toggleRow());
     E.legendPause = el('div', 'twui-legend');
     main.appendChild(E.legendPause);
-    const conf = el('div', 'twui-col twui-pause-confirm', IC.anchor + '<h2 class="twui-h">Begin again?</h2><p class="twui-sub">Every light you have kindled will go dark, and the voyage starts anew.</p>');
+    const conf = el('div', 'twui-col twui-pause-confirm', IC.anchor + '<h2 class="twui-h">要重新开始吗？</h2><p class="twui-sub">你点亮的每一盏灯都会熄灭，航程将从头开始。</p>');
     const pair = el('div', 'twui-pair');
-    E.keepBtn = button('twui-btn twui-btn--pri', 'Keep sailing', null, () => { p.classList.remove('twui-confirming'); try { E.resumeBtn.focus({ preventScroll: true }); } catch (e) { /* ignore */ } });
+    E.keepBtn = button('twui-btn twui-btn--pri', '继续航行', null, () => { p.classList.remove('twui-confirming'); try { E.resumeBtn.focus({ preventScroll: true }); } catch (e) { /* ignore */ } });
     pair.appendChild(E.keepBtn);
     pair.appendChild(button('twui-btn', '重新开始', null, () => { p.classList.remove('twui-confirming'); doRestart(); }));
     conf.appendChild(pair);
@@ -9383,17 +9383,17 @@ void main(){
 
   function buildEnding() {
     const e = el('div', 'twui-end');
-    const col = el('div', 'twui-col', '<h2 class="twui-h">心灯正在燃烧</h2><div class="twui-rule">' + IC.flame + '</div>' +
-      '<p class="twui-sub"><span>The Long Gale breaks upon the morning, and six lights answer one another across the water.</span><span>Somewhere, a boat that had given up hope turns for home.</span></p>' +
+    const col = el('div', 'twui-col', '<h2 class="twui-h">心灯燃起</h2><div class="twui-rule">' + IC.flame + '</div>' +
+      '<p class="twui-sub"><span>长风暴在清晨散去，六盏灯火隔着海面遥相呼应。</span><span>远方某处，一艘本已绝望的船调转船头，驶向归途。</span></p>' +
       '<div class="twui-stats">' +
-      '<div class="twui-stat"><b data-s="time">–</b><span>Voyage</span></div>' +
-      '<div class="twui-stat"><b data-s="floats">–</b><span>Storm-glass floats</span></div>' +
-      '<div class="twui-stat"><b data-s="knocks">–</b><span>Hull knocks</span></div>' +
-      '<div class="twui-stat"><b data-s="respawns">–</b><span>Times the dark took you</span></div></div>');
+      '<div class="twui-stat"><b data-s="time">–</b><span>航程用时</span></div>' +
+      '<div class="twui-stat"><b data-s="floats">–</b><span>风暴琉璃浮球</span></div>' +
+      '<div class="twui-stat"><b data-s="knocks">–</b><span>船体撞击</span></div>' +
+      '<div class="twui-stat"><b data-s="respawns">–</b><span>被黑暗吞没次数</span></div></div>');
     const pair = el('div', 'twui-pair');
-    E.sailOnBtn = button('twui-btn twui-btn--pri', IC.sail + 'Sail on', null, doSailOn);
+    E.sailOnBtn = button('twui-btn twui-btn--pri', IC.sail + '继续航行', null, doSailOn);
     pair.appendChild(E.sailOnBtn);
-    pair.appendChild(button('twui-btn', '再次起航', null, doRestart));
+    pair.appendChild(button('twui-btn', '再航一次', null, doRestart));
     col.appendChild(pair);
     e.appendChild(col);
     E.end = e; E.endStats = col.querySelector('.twui-stats');
@@ -9405,7 +9405,7 @@ void main(){
     const t = s && isNum(s.time) ? Math.max(0, Math.round(s.time)) : -1;
     set('time', t >= 0 ? Math.floor(t / 60) + ':' + ('0' + (t % 60)).slice(-2) : '', t >= 0);
     const fOk = !!s && isNum(s.floats);
-    set('floats', fOk ? (s.floats | 0) + (isNum(s.floatsTotal) ? '<small>of</small>' + (s.floatsTotal | 0) : '') : '', fOk);
+    set('floats', fOk ? (s.floats | 0) + (isNum(s.floatsTotal) ? '<small>/</small>' + (s.floatsTotal | 0) : '') : '', fOk);
     set('knocks', s && isNum(s.knocks) ? String(s.knocks | 0) : '', !!s && isNum(s.knocks));
     set('respawns', s && isNum(s.respawns) ? String(s.respawns | 0) : '', !!s && isNum(s.respawns));
     E.endStats.classList.toggle('twui-hide', !s);
@@ -9432,7 +9432,7 @@ void main(){
   }
   function buildChart() {
     const c = el('div', 'twui-chart');
-    c.setAttribute('role', 'dialog'); c.setAttribute('aria-label', 'Sea chart of the Thrumming Isles');
+    c.setAttribute('role', 'dialog'); c.setAttribute('aria-label', '嗡鸣群岛海图');
     chart.cv = document.createElement('canvas');
     c.appendChild(chart.cv);
     c.appendChild(button('twui-ib twui-chart-x', IC.close, '关闭海图', () => toggleChart(false)));
@@ -9572,7 +9572,7 @@ void main(){
     const ipx = Math.max(11, u * 2.15), order = isl.slice().sort((a, b) => ((b && b.r) || 0) - ((a && a.r) || 0));
     chartFont(ctx, ipx, 'italic small-caps', 0.1);
     for (let i = 0; i < order.length; i++) { const I = order[i]; if (!I || !I.name || !isNum(I.x) || !isNum(I.z)) continue; label(String(I.name), X(I.x), X(I.z), (I.r || 120) / (2 * ext) * w * 0.8, ipx); }
-    if (mawAt) { const mpx = Math.max(10, u * 1.9); chartFont(ctx, mpx, 'italic', 0.06); label('深渊', mawAt[0], mawAt[1], mawAt[2] + u * 0.3, mpx, 0.85); }
+    if (mawAt) { const mpx = Math.max(10, u * 1.9); chartFont(ctx, mpx, 'italic', 0.06); label('巨口漩涡', mawAt[0], mawAt[1], mawAt[2] + u * 0.3, mpx, 0.85); }
     ctx.restore();
     // neatline: double rule with a ticked scale
     ctx.strokeStyle = rgba(C.ink, 0.85); ctx.lineWidth = Math.max(1, u * 0.2); ctx.strokeRect(m - u * 0.9, m - u * 0.9, w + u * 1.8, w + u * 1.8);
@@ -9582,9 +9582,9 @@ void main(){
     ctx.stroke();
     // cartouche
     ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
-    chartFont(ctx, Math.max(12, u * 2.5), '', 0.3); ctx.fillStyle = rgba(C.ink, 0.92); ctx.fillText('THE THRUMMING ISLES', m + u * 3, m + u * 5.2);
+    chartFont(ctx, Math.max(12, u * 2.5), '', 0.3); ctx.fillStyle = rgba(C.ink, 0.92); ctx.fillText('嗡鸣群岛', m + u * 3, m + u * 5.2);
     ctx.strokeStyle = rgba(C.ink, 0.6); ctx.lineWidth = Math.max(0.6, u * 0.09); ctx.beginPath(); ctx.moveTo(m + u * 3, m + u * 6.3); ctx.lineTo(m + u * 22, m + u * 6.3); ctx.stroke();
-    chartFont(ctx, Math.max(10, u * 1.65), 'italic'); ctx.fillStyle = rgba(C.ink, 0.72); ctx.fillText('长风暴前测绘的航海图', m + u * 3, m + u * 8.6);
+    chartFont(ctx, Math.max(10, u * 1.65), 'italic'); ctx.fillStyle = rgba(C.ink, 0.72); ctx.fillText('领航海图 · 长风暴来临前测绘', m + u * 3, m + u * 8.6);
     // compass rose (N up)
     const rcx = m + u * 12.5, rcy = S - m - u * 12.5, rr = u * 7;
     chart.rose = [rcx, rcy, rr];
@@ -9597,7 +9597,7 @@ void main(){
       ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(lx, ly); ctx.lineTo(rcx, rcy); ctx.closePath(); ctx.fillStyle = rgba(C.ink, pass ? 0.82 : 0.5); ctx.fill();
       ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(rx, ry); ctx.lineTo(rcx, rcy); ctx.closePath(); ctx.fillStyle = rgba(C.vellum, 1); ctx.fill(); ctx.stroke();
     }
-    chartFont(ctx, Math.max(11, u * 2.1), ''); ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = rgba(C.ink, 0.9); ctx.fillText('N', rcx, rcy - rr - u * 0.9);
+    chartFont(ctx, Math.max(11, u * 2.1), ''); ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = rgba(C.ink, 0.9); ctx.fillText('北', rcx, rcy - rr - u * 0.9);
     // scale bar
     const sb = 500 / (2 * ext) * w, sx = S - m - u * 4 - sb, sy = S - m - u * 4;
     ctx.strokeStyle = rgba(C.ink, 0.8); ctx.lineWidth = Math.max(0.8, u * 0.14); ctx.beginPath(); ctx.moveTo(sx, sy - u * 0.7); ctx.lineTo(sx, sy); ctx.lineTo(sx + sb, sy); ctx.lineTo(sx + sb, sy - u * 0.7); ctx.moveTo(sx + sb / 2, sy); ctx.lineTo(sx + sb / 2, sy - u * 0.45); ctx.stroke();
@@ -9729,7 +9729,7 @@ void main(){
     setCls('tgTxtHide', E.tgt, 'twui-hide', !tgOk);
     if (tgOk) {
       setMarker('mt', E.mkTgt, mod((Math.PI - tg.bearing) * DEG, 360), deg);
-      setTxt('tgN', E.tgtN, tg.name ? String(tg.name) : 'Beacon');
+      setTxt('tgN', E.tgtN, tg.name ? String(tg.name) : '灯塔');
       if (isNum(tg.dist)) { const dq = tg.dist < 100 ? Math.round(tg.dist / 5) * 5 : Math.round(tg.dist / 10) * 10; if (L.tgD !== dq) { L.tgD = dq; E.tgtD.textContent = dq >= 1000 ? Math.floor(dq / 1000) + ' ' + ('00' + (dq % 1000)).slice(-3) + ' m' : dq + ' m'; } }
       else setTxt('tgDx', E.tgtD, '');
     }
@@ -9744,7 +9744,7 @@ void main(){
       }
     }
     pipsPrimed = true;
-    if (L.litN !== lit) { L.litN = lit; E.pips.setAttribute('aria-label', lit + ' of ' + pips.length + ' lights burning'); }
+    if (L.litN !== lit) { L.litN = lit; E.pips.setAttribute('aria-label', '已点亮 ' + lit + '/' + pips.length + ' 座灯塔'); }
     setCls('pipsHide', E.pips, 'twui-hide', pips.length === 0);
     const obj = phase !== 'free' && hud && hud.objective ? String(hud.objective) : '';
     setTxt('obj', E.obj, obj);
@@ -9782,7 +9782,7 @@ void main(){
       setCls('kIn', E.kindle, 'twui-in', inRing);
       setCls('kFar', E.kindle, 'twui-far', !inRing);
       const mode = (inRing ? 1 : 0) + (touchMode ? 2 : 0);
-      if (L.kindleTxt !== mode) { L.kindleTxt = mode; E.kindleTxt.innerHTML = inRing ? (touchMode ? 'Hold <b style="font-weight:400;color:var(--tw-ember)">Kindle</b> to send up the flame' : 'Hold <kbd class="twui-key">Space</kbd> to kindle') : 'Bring her into the ring of buoys'; }
+      if (L.kindleTxt !== mode) { L.kindleTxt = mode; E.kindleTxt.innerHTML = inRing ? (touchMode ? '按住<b style="font-weight:400;color:var(--tw-ember)">「点火」</b>，把火焰送上灯塔' : '按住 <kbd class="twui-key">空格</kbd> 点火') : '把船驶进浮标圈'; }
     }
     const pq = ring && isNum(ring.progress) ? Math.round(TW.saturate(ring.progress) * 100) : 0;
     if (L.kp !== pq) { L.kp = pq; const off = (128.81 * (1 - pq / 100)).toFixed(2); E.kindleFg.style.strokeDashoffset = off; E.kbtnFg.style.strokeDashoffset = off; }
@@ -9858,9 +9858,9 @@ void main(){
   // ---------------------------------------------------------------------------
   function makeDemoWorld() {
     const isl = [
-      { name: '三趾鸥岛', x: -640, z: -520, r: 175 }, { name: 'Saltmother', x: 560, z: -660, r: 215 }, { name: '梳齿礁', x: 880, z: 230, r: 150 },
-      { name: '塘鹅礁', x: -900, z: 330, r: 140 }, { name: '低光角', x: -170, z: 840, r: 195 }, { name: '心岩', x: 70, z: -70, r: 125 }];
-    const bn = ['三趾鸥灯塔', '盐母灯', '梳齿灯', '塘鹅灯', '低光灯', 'The Heartlight'];
+      { name: '三趾鸥屿', x: -640, z: -520, r: 175 }, { name: '盐母岛', x: 560, z: -660, r: 215 }, { name: '梳礁群', x: 880, z: 230, r: 150 },
+      { name: '塘鹅礁', x: -900, z: 330, r: 140 }, { name: '低灯岬', x: -170, z: 840, r: 195 }, { name: '心岩', x: 70, z: -70, r: 125 }];
+    const bn = ['三趾鸥灯塔', '盐母灯', '梳礁灯塔', '塘鹅灯塔', '低灯', '心灯'];
     const heightAt = (x, z) => {
       let best = -95;
       for (let i = 0; i < isl.length; i++) {
@@ -9900,12 +9900,12 @@ void main(){
     hud.inIrons = n === 'hud' && TW.q.has('irons'); hud.pointOfSail = 'beam';
     hud.target = { index: 3, name: tb.name, dist: n === 'kindle' ? 24 : Math.hypot(dx, dz), bearing: n === 'hud' ? S.boat.heading + 0.42 : Math.atan2(dx, dz), isHeart: false };
     hud.ring = n === 'kindle' || n === 'ring' ? { index: 3, inRing: true, progress: 0.64 } : null;
-    hud.objective = n === 'free' ? '' : 'Three lights burn. Carry the flame to Gannet Light.';
+    hud.objective = n === 'free' ? '' : '三座灯塔已经燃起。把火焰带到塘鹅灯塔去。';
     hud.lit = 3; hud.total = 6; hud.heartOpen = false;
     hud.danger = n === 'lanternout' ? 0.9 : n === 'kindle' ? 0.5 : 0.08; hud.fade = n === 'lanternout' ? 0.94 : 0;
     if (!demo.fired && clock > demo.fireAt) {
       demo.fired = true;
-      if (n === 'hud' || n === 'ring') TW.emit('hint', { text: '漂浮的风暴玻璃中仍有少量燃油。朝它们的微光驶去。' });
+      if (n === 'hud' || n === 'ring') TW.emit('hint', { text: '风暴琉璃浮球里还剩一点灯油。朝着它们的光亮驶去。' });
       if (n === 'kindle') { demo.kindled[3] = true; TW.emit('beaconLit', { index: 3, count: 4, total: 6, isHeart: false }); }
       if (n === 'lanternout') TW.emit('lanternOut');
       if (n === 'chart') toggleChart(true);
@@ -9956,19 +9956,19 @@ void main(){
     TW.on('beaconLit', (d) => {
       d = d || {};
       const W = world(), b = W && W.beacons && W.beacons[d.index];
-      const name = (b && b.name) || (d.isHeart ? 'The Heartlight' : 'The beacon');
-      const sub = d.isHeart ? 'burns — and the Long Gale breaks' : 'burns again' + (isNum(d.count) && isNum(d.total) ? '  ·  ' + d.count + ' of ' + d.total : '');
+      const name = (b && b.name) || (d.isHeart ? '心灯' : '灯塔');
+      const sub = d.isHeart ? '燃起 — 长风暴就此平息' : '重新燃起' + (isNum(d.count) && isNum(d.total) ? '  ·  ' + d.count + '/' + d.total : '');
       const nb = { name, sub, secs: d.isHeart ? 7 : 5.5, lit: true, delay: d.isHeart ? 7.0 : 4.2 };   // let the ignition play before any lettering
       root.classList.add('twui-bannering');
       for (let i = banners.length - 1; i >= 0; i--) if (banners[i].lit) banners.splice(i, 1);   // a burst of lightings shows only the latest
       if (bannerState === 1 && bannerLit && bannerAge < 0.75) { E.bannerName.textContent = name; E.bannerSub.textContent = sub; bannerT = nb.secs; bannerAge = 0; }
       else banners.push(nb);
     });
-    TW.on('heartOpen', () => banners.push({ name: '五盏灯已燃起', sub: '心灯将接过火焰。', secs: 6.5 }));
+    TW.on('heartOpen', () => banners.push({ name: '五座灯塔已燃起', sub: '心灯将接纳火焰。', secs: 6.5 }));
     TW.on('bump', (d) => { const s = d && isNum(d.strength) ? d.strength : 0.5; flash = Math.max(flash, 0.3 + 0.7 * TW.saturate(s)); });
-    TW.on('lanternOut', () => showFadeMsg('火焰摇曳。黑暗掌舵……', 14));
-    TW.on('wreck', () => showFadeMsg('大海吞没了小艇……', 14));
-    TW.on('respawn', () => showFadeMsg('……你在燃烧的灯光下醒来。', 3.6));
+    TW.on('lanternOut', () => showFadeMsg('火苗将熄。黑暗接管了船舵…', 14));
+    TW.on('wreck', () => showFadeMsg('大海吞没了小船…', 14));
+    TW.on('respawn', () => showFadeMsg('…你在一盏燃烧的灯下醒来。', 3.6));
     TW.on('ending', () => { endActive = true; endT = 0; endShown = false; toggleChart(false); });
     TW.on('restart', resetRun);
     TW.on('resize', () => { chart.dirty = true; if (touchMode && E.stickRest && stick.id === null) E.stickRest(); });
@@ -10075,7 +10075,7 @@ void main(){
       e.preventDefault(); lost = true;
       safe('game.pause', TW.game && TW.game.pause && TW.game.pause.bind(TW.game));
       const m = document.getElementById('tw-nogl');
-      if (m) { m.textContent = 'The sea went dark: the browser reclaimed the graphics context. Reopen the page to sail again.'; m.style.background = 'var(--tw-ink)'; m.style.zIndex = '60'; m.hidden = false; }
+      if (m) { m.textContent = '海面陷入黑暗：浏览器回收了图形上下文。请重新打开页面再次起航。'; m.style.background = 'var(--tw-ink)'; m.style.zIndex = '60'; m.hidden = false; }
     });
     const dbg = gl.getExtension('WEBGL_debug_renderer_info');
     TW.stats.renderer = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : 'unknown';
@@ -10227,5 +10227,5 @@ void main(){
 
 </script>
 
-<script>(function(){var P=[["The Clockmaker's Heart","钟表匠之心"],["The Clockmaker’s Heart","钟表匠之心"],["Clockmaker’s","钟表匠的"],["BEGIN","开始"],["HAND WOUND · NO. 0007","手动上弦 · 编号 0007"],["DETAIL","细节"],["LOW","低"],["MEDIUM","中"],["HIGH","高"],["winding…","上弦中……"],["SALTLINE","盐线"],["PORT AUTHORITY BREACH UNIT","港务局破袭部队"],["TERMINAL","终端"],["BERTH 4","4 号码头"],["SETTINGS","设置"],["CONTROLS","操作"],["CONTROL","操作"],["MODE","模式"],["MISSION","任务"],["HOLDOUT","坚守"],["DIFFICULTY","难度"],["STANDARD","标准"],["HARD","困难"],["BRUTAL","残酷"],["OBJECTIVE","目标"],["RELAYS","中继站"],["VITALS","状态"],["READY","就绪"],["CONTROLLER","手柄"],["TOUCH","触控"],["STICKS MOVE AND LOOK","摇杆移动与视角"],["LEFT THUMB MOVES","左拇指移动"],["RIGHT THUMB LOOKS","右拇指视角"],["ON SCREEN","屏幕操作"],["WASD MOVE","WASD 移动"],["MOUSE LOOK","鼠标视角"],["LMB FIRE","左键射击"],["RMB AIM","右键瞄准"],["R RELOAD","R 换弹"],["Q SIDEARM","Q 副武器"],["E CUT RELAY","E 切断中继站"],["SPACE JUMP","空格 跳跃"],["SHIFT SPRINT","Shift 冲刺"],["C CROUCH","C 蹲下"],["ESC PAUSE","Esc 暂停"],["RT FIRE","右扳机 射击"],["LT AIM","左扳机 瞄准"],["X RELOAD / CUT","X 换弹 / 切断"],["Y SIDEARM","Y 副武器"],["A DEPLOY","A 部署"],["FIRE · AIM · RELOAD · JUMP ON SCREEN","屏幕上的射击 · 瞄准 · 换弹 · 跳跃"],["Hi, Felix here. People online were impressed with the one-shotted version of this game - Claude Fable 5.2 built something pretty good without any human feedback. However, I really wanted to fix the weapon models, sounds, and some gameplay work. I spent an additional two hours to improve this game.","你好，我是 Felix。网上的人对这个一次生成的版本印象深刻。Claude Fable 5.2 在没有人工反馈的情况下做得相当不错。不过，我还想修复武器模型、声音和部分玩法细节，所以又花了两个小时改进它。"],["If you'd rather see the first version that didn't receive any human feedback, click here:","如果你想查看那个没有经过人工反馈的初版，请点击这里："],["SEE THE ONE-SHOTTED VERSION","查看一次生成版本"],["ONE BREACHER, NO BACKUP","一名破袭手，无支援"],["Tidewright","潮汐工匠"],["SET SAIL","扬帆"],["SOUND","声音"],["PAINTERLY","绘画风"],["AD steer","A/D 转向"],["WS sail","W/S 扬帆"],["SPACE kindle","空格 点燃"],["C chart","C 海图"],["M mute","M 静音"],["ESC pause","Esc 暂停"],["Trimming the lantern wick…","修剪灯芯……"],["The Long Gale has put out every light in the Thrumming Isles.","长风暴熄灭了轰鸣群岛上的每一盏灯。"],["You carry the last flame.","你带着最后的火焰。"],["Sea chart","海图"],["Close chart","关闭海图"],["Hold to kindle","按住点燃"],["Restart voyage","重新开始航程"],["Begin again","重新开始"],["Sail again","再次起航"],["The Heartlight burns","心灯正在燃烧"],["Five lights burn","五盏灯已燃起"],["The flame gutters. The dark takes the helm…","火焰摇曳。黑暗掌舵……"],["The sea takes the skiff…","大海吞没了小艇……"],["Too close to the wind — bear away","太靠近风向了，转舵离开"],["Storm-glass floats still hold a little oil. Steer for their glow.","漂浮的风暴玻璃中仍有少量燃油。朝它们的微光驶去。"]];function go(){var w=document.createTreeWalker(document.body,4),n;while(n=w.nextNode()){var e=n.parentElement;if(!e||/SCRIPT|STYLE|TEXTAREA/.test(e.tagName))continue;var s=n.nodeValue;for(var i=0;i<P.length;i++)s=s.split(P[i][0]).join(P[i][1]);n.nodeValue=s}document.title=document.title.split("The Clockmaker's Heart").join("钟表匠之心").split("Tidewright").join("潮汐工匠")}go();new MutationObserver(go).observe(document.body,{subtree:true,childList:true,characterData:true})})();</script></body>
+</body>
 </html>
